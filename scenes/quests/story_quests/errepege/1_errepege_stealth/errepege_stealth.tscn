@@ -4,18 +4,18 @@
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="2_sw6ys"]
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="3_c4pe5"]
 [ext_resource type="PackedScene" uid="uid://d37mebu7atru7" path="res://scenes/game_elements/characters/enemies/guard/guard.tscn" id="4_e1f5i"]
+[ext_resource type="SpriteFrames" uid="uid://bcrujtl2qe5w5" path="res://scenes/quests/story_quests/errepege/errepege_player_components/errepege_player.tres" id="4_f3yxj"]
+[ext_resource type="SpriteFrames" uid="uid://bh6kbbfqwyygh" path="res://scenes/quests/story_quests/errepege/1_errepege_stealth/errepege_stealth_components/errepege_guard_enemy.tres" id="5_40kab"]
 [ext_resource type="PackedScene" uid="uid://dua6mynlw2ptw" path="res://scenes/game_elements/props/checkpoint/checkpoint.tscn" id="5_ix7du"]
 [ext_resource type="Resource" uid="uid://cppk2qynt485b" path="res://scenes/quests/story_quests/template/1_template_stealth/template_stealth_components/template_checkpoint.dialogue" id="6_vqv3j"]
 [ext_resource type="PackedScene" uid="uid://cfcgrfvtn04yp" path="res://scenes/ui_elements/hud/hud.tscn" id="7_84dvd"]
 [ext_resource type="PackedScene" uid="uid://fuhl3l6gxq5k" path="res://scenes/game_elements/props/collectible_item/collectible_item.tscn" id="8_1uowg"]
 [ext_resource type="Script" uid="uid://bgmwplmj3bfls" path="res://scenes/globals/game_state/inventory/inventory_item.gd" id="9_7ddj3"]
 [ext_resource type="Resource" uid="uid://dpv4wurvaamhb" path="res://scenes/quests/story_quests/template/1_template_stealth/template_stealth_components/template_collected.dialogue" id="10_06jbt"]
-[ext_resource type="Script" uid="uid://x1mxt6bmei2o" path="res://scenes/ui_elements/cinematic/cinematic.gd" id="11_jxoif"]
-[ext_resource type="Resource" uid="uid://cggywn8t6s4le" path="res://scenes/quests/story_quests/template/1_template_stealth/template_stealth_components/template_stealth.dialogue" id="12_t8c6v"]
 
 [sub_resource type="Curve2D" id="Curve2D_vnsq3"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -4629.33, 278.319, 0, 0, 0, 0, 2660, 266.98)
+"points": PackedVector2Array(0, 0, 0, 0, -4629.33, 278.319, 0, 0, 0, 0, -1110.67, 281.154)
 }
 point_count = 2
 
@@ -59,9 +59,11 @@ tile_set = ExtResource("2_sw6ys")
 
 [node name="Player" parent="." instance=ExtResource("3_c4pe5")]
 position = Vector2(131, 463)
+sprite_frames = ExtResource("4_f3yxj")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 process_mode = 3
+position = Vector2(1, 0)
 zoom = Vector2(1.7, 1.7)
 limit_left = 0
 limit_top = 0
@@ -73,6 +75,7 @@ y_sort_enabled = true
 
 [node name="Guard1-GoingBackAndForth" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("4_e1f5i")]
 position = Vector2(526, 470)
+sprite_frames = ExtResource("5_40kab")
 patrol_path = NodePath("../Guard1-PatrolPath")
 move_speed = 200.0
 
@@ -84,6 +87,7 @@ curve = SubResource("Curve2D_vnsq3")
 
 [node name="Guard2-RunningInCircles" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("4_e1f5i")]
 position = Vector2(2435, 382)
+sprite_frames = ExtResource("5_40kab")
 patrol_path = NodePath("../Guard2-RunningPath")
 wait_time = 0.3
 move_speed = 1000.0
@@ -111,11 +115,6 @@ debug_color = Color(0, 0, 0, 0.42)
 
 [node name="CollectibleItem" parent="." instance=ExtResource("8_1uowg")]
 position = Vector2(2335, 955)
-next_scene = "uid://thwcu5akkqp5"
+next_scene = "uid://d0v6d4reibob0"
 item = SubResource("Resource_idy4y")
 collected_dialogue = ExtResource("10_06jbt")
-
-[node name="Cinematic" type="Node2D" parent="."]
-script = ExtResource("11_jxoif")
-dialogue = ExtResource("12_t8c6v")
-metadata/_custom_type_script = "uid://x1mxt6bmei2o"

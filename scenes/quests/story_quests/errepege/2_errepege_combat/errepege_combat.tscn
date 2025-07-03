@@ -1,12 +1,14 @@
-[gd_scene load_steps=13 format=4 uid="uid://d0v6d4reibob0"]
+[gd_scene load_steps=15 format=4 uid="uid://d0v6d4reibob0"]
 
 [ext_resource type="Script" uid="uid://cp54mgi54nywo" path="res://scenes/game_logic/fill_game_logic.gd" id="1_tcg1t"]
 [ext_resource type="Resource" uid="uid://3vrn5jdxov37" path="res://scenes/quests/story_quests/template/2_template_combat/template_combat_components/template_combat.dialogue" id="2_nx1fn"]
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="3_0la8l"]
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="4_6s6nl"]
 [ext_resource type="PackedScene" uid="uid://b82nsrh332syj" path="res://scenes/game_elements/characters/enemies/throwing_enemy/throwing_enemy.tscn" id="5_e3efh"]
+[ext_resource type="SpriteFrames" uid="uid://bcrujtl2qe5w5" path="res://scenes/quests/story_quests/errepege/errepege_player_components/errepege_player.tres" id="5_yl7kg"]
 [ext_resource type="PackedScene" uid="uid://y8ha8abfyap2" path="res://scenes/game_elements/props/filling_barrel/filling_barrel.tscn" id="6_6ba8x"]
 [ext_resource type="SpriteFrames" uid="uid://c50725q5ey5j5" path="res://scenes/quests/story_quests/template/2_template_combat/template_combat_components/template_target_spriteframes.tres" id="7_cnfhh"]
+[ext_resource type="SpriteFrames" uid="uid://dykt8pn4oogom" path="res://scenes/quests/story_quests/errepege/2_errepege_combat/errepege_combat_components/errepege_throwing_enemy.tres" id="7_n8mwb"]
 [ext_resource type="PackedScene" uid="uid://fuhl3l6gxq5k" path="res://scenes/game_elements/props/collectible_item/collectible_item.tscn" id="8_g0kok"]
 [ext_resource type="Script" uid="uid://bgmwplmj3bfls" path="res://scenes/globals/game_state/inventory/inventory_item.gd" id="9_wparg"]
 [ext_resource type="PackedScene" uid="uid://cfcgrfvtn04yp" path="res://scenes/ui_elements/hud/hud.tscn" id="10_aylh3"]
@@ -23,6 +25,7 @@ y_sort_enabled = true
 
 [node name="FillGameLogic" type="Node" parent="."]
 script = ExtResource("1_tcg1t")
+barrels_to_win = 2
 intro_dialogue = ExtResource("2_nx1fn")
 metadata/_custom_type_script = "uid://cp54mgi54nywo"
 
@@ -41,11 +44,13 @@ y_sort_enabled = true
 
 [node name="Player" parent="OnTheGround" instance=ExtResource("4_6s6nl")]
 position = Vector2(348, 335)
+sprite_frames = ExtResource("5_yl7kg")
 
 [node name="ThrowingNPC" parent="OnTheGround" instance=ExtResource("5_e3efh")]
 position = Vector2(840, 273)
 scale = Vector2(1.5, 1.5)
 throwing_period = 4.0
+sprite_frames = ExtResource("7_n8mwb")
 
 [node name="Target" parent="OnTheGround" instance=ExtResource("6_6ba8x")]
 position = Vector2(510, 164)
